@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport" />
+    <title>Google Analytics UTM URL Builder | Prospek Digital</title>
+    <link rel="shortcut icon" href="favicon.png" />
+
+    <script type="text/javascript" src="angular.min.js"></script>
+    <script type="text/javascript" src="angular-animate.min.js"></script>
+
+    <script type="text/javascript" src="angular-toastr.tpls.min.js"></script>
+    <script type="text/javascript" src="angular-socialshare.js"></script>
+    <script type="text/javascript" src="ZeroClipboard.min.js"></script>
+    <script type="text/javascript" src="ngClip.js"></script>
+    <script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="bootstrap.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="angular-toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- FB OPEN GRAPH -->
+    <meta property="og:title" content="Google Analytics UTM URL Builder" />
+    <meta property="og:description" content="Google Analytics UTM URL Builder Adalah Sebuah Tool Percuma Untuk Membantu Anda Membina URL Khas Untuk Kempen-kempen Anda Di Internet" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://www.prospekdigital.com/utm-url-builder/" />
+    <meta property="og:image" content="http://www.prospekdigital.com/utm-url-builder/fbog.jpg" />
+    <meta property="og:site_name" content="Prospek Digital" />
+    <!-- END FB OG -->
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://www.prospekdigital.com/?utm_source=google-utm-builder&utm_medium=google-utm-builder-tool&utm_campaign=google-utm-builder" target="_blank">
+                    <img id="brand-image" alt="Website Logo" src="logo25x25.png" />
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="http://www.prospekdigital.com/category/facebook-ads/?utm_source=google-utm-builder&utm_medium=google-utm-builder-tool&utm_campaign=google-utm-builder" target="_blank">Tips FB Ads</a></li>
+                    <li><a href="http://www.prospekdigital.com/category/seo-101/?utm_source=google-utm-builder&utm_medium=google-utm-builder-tool&utm_campaign=google-utm-builder" target="_blank">Tips SEO</a></li>
+                    <li><a href="http://www.prospekdigital.com/tools-percuma/?utm_source=google-utm-builder&utm_medium=google-utm-builder-tool&utm_campaign=google-utm-builder" target="_blank">Tools Lain</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://www.facebook.com/ProspekDigital" target="_blank"><i class="fa fa-facebook-official"></i> Facebook</a></li>
+                    <li><a href="https://twitter.com/prospekdigital" target="_blank"><i class="fa fa-twitter"></i> Twitter</a></li>
+                    <li><a href="https://www.youtube.com/user/ProspekDigitalTV?sub_confirmation=1" target="_blank"><i class="fa fa-youtube-play"></i> YouTube</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <div id="wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3"></div><!-- /col-md-3 -->
+                <div class="col-md-6" ng-controller="myCtrl">
+                    <h3><b>Google Analytics <abbr title="Urchin Tracking Module">UTM</abbr> URL Builder</b></h3>
+                    <p>Sila isi semua ruangan yang bertanda <b>*</b> dan klik butang <b>Bina URL Kempen</b>.</p>
+                    <form>
+                      <div class="form-group">
+                        <label>URL*</label>
+                        <input type="text" class="form-control" ng-model="url" placeholder="http://www.contoh.com/">
+                      </div>
+                      <div class="form-group">
+                        <label>Sumber Kempen*</label>
+                        <input type="text" class="form-control" ng-model="source" placeholder="google, newsletter, facebook">
+                      </div>
+                      <div class="form-group">
+                        <label>Medium Kempen*</label>
+                        <input type="text" class="form-control" ng-model="medium" placeholder="cpc, banner, email">
+                      </div>
+                      <div class="form-group">
+                        <label>Nama Kempen*</label>
+                        <input type="text" class="form-control" ng-model="name" placeholder="raya2015, promotahunbaru, birthdaynenek">
+                      </div>
+                      <div class="form-group">
+                        <label>Terma Kempen</label>
+                        <input type="text" class="form-control" ng-model="term" placeholder="(tidak wajib) untuk mengenalpasti kata kunci berbayar">
+                      </div>
+                      <div class="form-group">
+                        <label>Kandungan Kempen</label>
+                        <input type="text" class="form-control" ng-model="content" placeholder="(tidak wajib) untuk mengenalpasti iklan yang berbeza">
+                      </div>
+                      <button class="btn btn-success" ng-click="built()">Bina URL Kempen &nbsp;<i class="fa fa-plus-circle"></i></button>
+                      &nbsp;
+                      <button class="btn btn-danger" ng-click="clear()">Padam Semua <i class="fa fa-trash"></i></button>
+                    </form>
+
+                    <br>
+
+                    <label>URL kempen anda:</label>
+                    <div class="row">
+                      <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="finalurl" placeholder="">        
+                      </div>
+                      <div class="col-md-3">
+                        <!-- disable this copy button if $scope.activateCopyButton is false -->
+                        <button ng-disabled="!activateCopyButton" class="btn btn-primary btn-block copy-btn" clip-copy="copy()" clip-click="afterCopy()">Copy <i class="fa fa-files-o"></i></button>
+                      </div>
+                    </div>
+
+                    <div class="tcenter">
+                        <h5 class="social-sharing">Kongsikan tool awesome ini dengan rakan-rakan anda!</h5>
+                        <a href="#" socialshare socialshare-provider="facebook" socialshare-text="Google Analytics UTM URL Builder" socialshare-url="http://www.prospekdigital.com/utm-url-builder/"><img ng-src="f.png"></a>
+                        <a href="#" socialshare socialshare-provider="twitter" socialshare-via="prospekdigital" socialshare-url="http://www.prospekdigital.com/utm-url-builder/" socialshare-text="Google Analytics UTM URL Builder - Tool Percuma Untuk Bina URL Kempen Pemasaran Di Internet"><img ng-src="t.png"></a>
+                    </div>
+
+                    <br>
+
+                </div><!-- /col-md-6 -->
+                <div class="col-md-3"></div><!-- /col-md-3 -->
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <p class="tcenter"><small>
+                <span data-toggle="modal" data-target="#modal" class="modal-info">Copy tak menjadi? Ketahui lebih lanjut di sini</span><br>
+                Dibangunkan oleh <a href="http://facebook.com/handyplast" target="_blank">Zulhilmi Zainudin</a> // Teh tarik ditaja oleh <a href="http://www.binablogdotcomsendiri.com/blog/?utm_source=google-utm-builder&utm_medium=google-utm-builder-tool&utm_campaign=google-utm-builder" target="_blank">Bina Blog Dot Com Sendiri</a> &#128522;</small></p>
+        </div>
+    </footer>
+
+    <!-- modal -->
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Tentang fungsi <i>Copy URL</i></h4>
+          </div>
+          <div class="modal-body">
+            <p>Fungsi ini hanya untuk anda yang menggunakan pelayar Chrome atau Firefox terkini sahaja. Fungsi ini tidak boleh digunakan pada smartphone dan hanya boleh digunakan pada komputer sahaja.</p>
+            <p><strong>Nota</strong>: Pastikan komputer anda mempunyai flash player. <a href="https://get.adobe.com/flashplayer/">Klik sini</a> untuk download flash player.</p>
+            <p>Jika anda menggunakan URL builder ini di tablet atau di smartphone, sila <i>select</i> URL kempen anda secara manual dan <i>copy</i> secara manual.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Ok, saya faham</button>
+          </div>
+        </div>
+      </div>
+    </div><!-- /modal -->
+
+</body>
+
+</html>
